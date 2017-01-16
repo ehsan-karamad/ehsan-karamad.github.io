@@ -7,11 +7,17 @@
     This is the text block to test not the test block to text or the block test to text or the block text to test or the text test or test text to block.
   </div>
   <input type="text" value="abc">
+  <div id="log"></div>
   <script>
   document.querySelector('input').onfocus = function() {
-    var data = {text: this.value, type: 'focused'};
-    window.parent.postMessage(data, '*');
+    log("Focused");
   };
+
+  function log(msg) {
+    var p = document.createElement('p');
+    p.innerHTML = msg;
+    document.getElementById('log').appendChild(p);
+  }
 
   </script>
 </body>
