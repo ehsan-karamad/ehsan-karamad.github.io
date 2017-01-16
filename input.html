@@ -1,21 +1,17 @@
-<html>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
+<title>Sample page with single input field and some text </title>
 <body>
-<button> Count To: </button>
-<input id="counter" type="number" value="5000"/>
-<input type="text" value="enter text ..." id="input-text"/>
-<script>
-  document.querySelector('button').onclick = function() {
-    var input = document.querySelector('#counter');
-    while(input.value > 0) {
-      input.value = input.value - 1;
-    }
+  <div id="text-block">
+    This is the text block to test not the test block to text or the block test to text or the block text to test or the text test or test text to block.
+  </div>
+  <input type="text" value="abc">
+  <script>
+  document.querySelector('input').onfocus = function() {
+    var data = {text: this.value, type: 'focused'};
+    window.parent.postMessage(data, '*');
   };
-  document.querySelector('#input-text').onblur = function() {
-    var input = this;
-    window.setTimeout(function() {
-      input.focus();
-    }, 3000);
-  };
-</script>
+
+  </script>
 </body>
-<html>
