@@ -14,5 +14,8 @@
   nav.onclick = function() {
     frame.src = url.value;
   };
+  frame.onload = function() {
+    frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
+  };
 </script>
 </body>
