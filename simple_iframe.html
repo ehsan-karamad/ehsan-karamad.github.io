@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
+<title>Page Title</title>
+<body>
+  <iframe style="width: 50%; height 50%;"></iframe>
+  <input id="url"/>
+  <button id="nav"></button>
+<script>
+  var nav = document.getElementById('nav');
+  var url = document.getElementById('url);
+  var frame = document.querySelector('iframe');
+  nav.onclick = function() {
+    frame.src = url.value;
+  };
+</script>
+</body>
