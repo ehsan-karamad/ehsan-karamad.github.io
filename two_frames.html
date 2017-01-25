@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
+<title>Page Title</title>
+<style>
+td {
+  width: 50%;
+}
+</style>
+<body>
+  <table>
+    <tr>
+      <td id="cell1">
+        <input value="https://www.wikipedia.org"></input>
+        <button> Navigate </button>
+        <iframe></iframe>
+      </td>
+      <td id="cell2">
+        <input value="https://www.wikipedia.org"></input>
+        <button> Navigate </button>
+        <iframe></iframe> 
+      </td>
+    </tr>
+  </table>
+  <script>
+  function setUp(cell, urlValue) {
+    var frame = cell.querySelector('iframe');
+    var url = cell.querySelector('input');
+    url.value = urlValue;
+    var nav = cell.querySelector('button');
+    nav.addEventListener('click', function() {
+      frame.src = url.value;
+    });
+  }
+
+  window.addEventListener('load', function() {
+    setUp(document.getElementById('cell1'), 'https://www.wikipedia.org');
+    setUp(document.getElementById('cell2'), 'https://www.crbug.com');
+  });
+ </script>
+</body>
