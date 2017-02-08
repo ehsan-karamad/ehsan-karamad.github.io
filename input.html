@@ -7,17 +7,29 @@
     This is the text block to test not the test block to text or the block test to text or the block text to test or the text test or test text to block.
   </div>
   <input type="text" value="abc">
+  <button onclick="onClick(2);"> Click to focus input in 2 sec </button>
+  <button onclick="onClick();"> Click to focus input now. </button>
   <div id="log"></div>
   <script>
-  document.querySelector('input').onfocus = function() {
-    log("Focused");
-  };
+document.querySelector('input').onfocus = function() {
+  log("Focused");
+};
 
-  function log(msg) {
-    var p = document.createElement('p');
-    p.innerHTML = msg;
-    document.getElementById('log').appendChild(p);
+function log(msg) {
+  var p = document.createElement('p');
+  p.innerHTML = msg;
+  document.getElementById('log').appendChild(p);
+}
+
+function onClick(delay) {
+  if (delay) {
+    window.setTimeout(function() {
+      onClick();
+    }, delay * 1000);
+    return;
   }
+  document.querySelector('input').focus();
+}
 
   </script>
 </body>
