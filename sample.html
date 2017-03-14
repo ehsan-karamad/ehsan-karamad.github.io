@@ -1,9 +1,11 @@
 <input id="input1"></input>
 <script>
-window.onload = function() {
-  if (window.opener)
-    return;
-  other = window.open('https://ehsan-karamad.github.io/tests/sample.html');
-  window.focus();
-};
+  window.onload = function() {
+    if (window.opener)
+      return;
+    other = window.open('https://www.google.ca');
+    window.setInterval(function() {
+      console.log('break here out. hover over |other| when the other tab commits.');
+    }, 0);
+  };
 </script>
