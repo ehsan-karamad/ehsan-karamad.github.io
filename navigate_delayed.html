@@ -1,0 +1,16 @@
+<label> Destination URL </label> <input id='url-input'/> <br/>
+<label> Navigation delay </label> <input type="number" id='delay-input' value="1000"/>
+<button id="navigate"> Navigate</button>
+<script>
+window.onload = function() {
+  var url = document.getElementById('url-input');
+  url.value = window.location.href;
+  var delay = document.getElementById('delay-input');
+  document.getElementById('navigate').onclick = function() {
+    window.setTimeout(function() {
+      window.location = url.value;
+    }, delay.value);
+  };
+};
+
+</script>
