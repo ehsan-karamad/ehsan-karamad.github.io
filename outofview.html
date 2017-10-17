@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
+<title>Page Title</title>
+<style>
+.outofview {
+  margin-top: 110%;
+  margin-left: 110%;
+}
+
+</style>
+<body>
+  <div></div>
+  <iframe class="outofview"></iframe>
+  <script>
+    var rect = document.querySelector('iframe').getBoundingClientRect();
+    document.querySelector('div').innerHTML =
+        [rect.left, rect.top, rect.width, rect.height].join(',');
+  </script>
+</body>
