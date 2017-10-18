@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
+<title>Page Title</title>
+<body>
+  <button> Scroll in 3 sec </button>
+  <script>
+    function scrollIt() {
+      this.style.marginTop = "1000px";
+      this.style.marginLeft = "1000px";
+      window.setTimeout(function() {
+        this.scrollIntoView();
+      }.bind(this), 3000);
+    }
+  document.querySelector('button').onclick = scrollIt;
+  </script>
+</body>
