@@ -1,0 +1,34 @@
+<body>
+<label> Source </label> <input id="src" value="https://en.wikipedia.org/wiki/Main_Page"/>
+<label> Style </label> <input id="style" value="margin: 500px"/>
+<iframe></iframe>
+<script>
+  window.addEventListener('load', onLoad);
+
+  function iframe() {
+    return document.querySelector('iframe');
+  }
+
+  function onLoad() {
+    var src = document.getElementById('src');
+    src.addEventListener('keypress', onSourceUpdate);
+    var style = document.getElementById('style');
+    style.addEventListener('keypress', onStyleUpdate);
+    var frame =  iframe();
+    frame.sourceInput = src;
+    frame.styleInput = style;
+  }
+
+  function onSourceUpdate(e) {
+    if (e.keyCode === 13) {
+      iframe().src = iframe().sourceInput.value;
+    }
+  }
+
+  function onStyleUpdate(e) {
+    if (e.keyCode === 13) {
+      iframe().style = iframe().styleInput.value;
+    }
+  }
+</script>
+</body>
