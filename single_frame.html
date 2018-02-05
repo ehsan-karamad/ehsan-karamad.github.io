@@ -35,11 +35,11 @@
   }
 
   document.getElementById('src').onclick = function() {
-    onSourceUpdate({keyCode: 13});
+    ifame().src = iframe().sourceInput.value;
   };
 
   document.getElementById('style').onclick = function() {
-    onStyleUpdate({keyCode: 13});
+    iframe().style = iframe().styleInput.value;
   };
 
 </script>
