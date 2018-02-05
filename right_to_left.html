@@ -3,6 +3,10 @@
 <meta charset="utf-8">
 <!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
 <style>
+* {
+  margin: 0;
+  padding: 0;
+}
 
 .rtl-el {
   direction: rtl;
@@ -23,18 +27,21 @@ input {
 <title>Page Title</title>
 <body>
  <form>
-  <div>
-  <label class='rtl-el'> Some RTL Input </label>
-  <input class='rtl-el'/>
+  <div align="right">
+    <label class='rtl-el'> Some RTL Input </label>
+    <br/>
+    <input class='rtl-el'/>
   </div>
-  <br/>
-  <label class='ltr-el'> Some RTL Input </label>
-  <input class='ltr-el'/>
- </form>
- <script>
+  <div align="left">
+    <label class='ltr-el'> Some LTR Input </label>
+    <br/>
+    <input class='ltr-el'/>
+  </div>
+</form>
+<script>
   window.onload = function() {
-    document.querySelectorAll('input').forEach((inel) => {
-      inel.value = 'Repeating this text twice.'.repeate(2);
+        Array.prototype.slice.call(document.querySelectorAll('input')).forEach((inel) => {
+      inel.value = 'Repeating this text twice.'.repeat(2);
     });
   };
 </script>
