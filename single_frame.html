@@ -4,7 +4,6 @@
 <button id="src"> Load </button>
 <label> Style </label> <input id="style" value="margin: 500px"/>
 <button id="style"> Set Style </button>
-<input id="counter" value="0"/>
 <iframe></iframe>
 <script>
   window.addEventListener('load', onLoad);
@@ -21,9 +20,6 @@
     var frame =  iframe();
     frame.sourceInput = src;
     frame.styleInput = style;
-    window.setInterval(function() {
-      document.getElementById('counter').value += 1;
-    }, 100);
   }
 
   function onSourceUpdate(e) {
