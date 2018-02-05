@@ -51,11 +51,21 @@
                 }, 5000);
             };
 
+            var styleIn = document.createElement('input');
+            styleIn.value = 'width: 100px;';
+            var styleSet = document.createElement('button');
+            styleSet.textContent = 'Set Style';
+            styleSet.onclick = function() {
+                frame.style = styleIn.value;
+            };
+
             div.appendChild(frame);
             div.appendChild(addressBar);
             div.appendChild(navigate);
             div.appendChild(rem);
             div.appendChild(timedRem);
+            div.appendChild(styleIn);
+            div.appendChild(styleSet);
 
             container.appendChild(div);
         }
