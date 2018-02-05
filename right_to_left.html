@@ -3,31 +3,35 @@
 <meta charset="utf-8">
 <!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
 <style>
-*[dir="rtl"] {
-    direction: rtl;
+
+.rtl-el {
+  direction: rtl;
+  text-align: right;
+  unicode-bidi:bidi-override;
 }
 
-*[dir="ltr"] {
+input {
+  width: 1200px;
+}
+
+.ltr-el {
   direction: ltr;
-}
-
-.long {
-  width: 1000px;
-}
-
-.normal {
-  width: 120px;
+  text-align: left;
 }
 
 </style>
 <title>Page Title</title>
 <body>
  <form>
-   <h2 dir="ltr"> Some Left to Right Header </h2>
-   <input dir="ltr" value="Some Left to right text" class="long"/>
-   <h2 dir="rtl"> And some right to left Header </h2>
-   <input dir="rtl" value="Some other text which is long and right to left and interesting"
-                    class="long"/>
-   <input dir="rtl" value="short rtl" class="norma"/>
+  <h2 class='rtl-el'> Some RTL Input </h2>
+  <input class='rtl-el' value="Some Text Repeted."/>
+  <br/>
+  <h2 class='ltr-el'> Some RTL Input </h2>
+  <input class='ltr-el' value="Some Text Repeted."/>
  </form>
+ <script>
+  window.onload = function() {
+    document.querySelector('input').value = 'text repeated!'.repeat(10);;
+  };
+</script>
 </html>
