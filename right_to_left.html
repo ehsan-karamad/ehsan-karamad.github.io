@@ -25,15 +25,17 @@ input {
  <form>
   <div>
   <label class='rtl-el'> Some RTL Input </label>
-  <input class='rtl-el' value="Some Text Repeted."/>
+  <input class='rtl-el'/>
   </div>
   <br/>
   <label class='ltr-el'> Some RTL Input </label>
-  <input class='ltr-el' value="Some Text Repeted."/>
+  <input class='ltr-el'/>
  </form>
  <script>
   window.onload = function() {
-    document.querySelector('input').value = 'text repeated!'.repeat(10);;
+    document.querySelectorAll('input').forEach((inel) => {
+      inel.value = 'Repeating this text twice.'.repeate(2);
+    });
   };
 </script>
 </html>
