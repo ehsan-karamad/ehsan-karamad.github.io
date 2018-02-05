@@ -1,45 +1,20 @@
 <meta name='viewport' content='width=device-width, minimum-scale=1'>
 <body style="overscroll: hidden">
 <label> Source </label> <input id="src" value="https://en.wikipedia.org/wiki/Main_Page"/>
-<button id="src"> Load </button>
+<button id="src-btn"> Load </button>
 <label> Style </label> <input id="style" value="margin: 500px"/>
-<button id="style"> Set Style </button>
+<button id="style-btn"> Set Style </button>
 <iframe></iframe>
 <script>
   window.addEventListener('load', onLoad);
 
-  function iframe() {
-    return document.querySelector('iframe');
-  }
-
-  function onLoad() {
-    var src = document.getElementById('src');
-    src.addEventListener('keypress', onSourceUpdate);
-    var style = document.getElementById('style');
-    style.addEventListener('keypress', onStyleUpdate);
-    var frame =  iframe();
-    frame.sourceInput = src;
-    frame.styleInput = style;
-  }
-
-  function onSourceUpdate(e) {
-    if (e.keyCode === 13) {
-      iframe().src = iframe().sourceInput.value;
-    }
-  }
-
-  function onStyleUpdate(e) {
-    if (e.keyCode === 13) {
-      iframe().style = iframe().styleInput.value;
-    }
-  }
-
-  document.getElementById('src').onclick = function() {
-    ifame().src = iframe().sourceInput.value;
+  var iframe = document.querySelector('iframe');
+  document.getElementById('src-btn').onclick = function() {
+    iframe.src = document.getElementById('src').value;
   };
 
-  document.getElementById('style').onclick = function() {
-    iframe().style = iframe().styleInput.value;
+  document.getElementById('style-btn').onclick = function() {
+    iframe.style = document.getElementById('style').value;
   };
 
 </script>
