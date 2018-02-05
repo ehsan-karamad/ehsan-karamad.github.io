@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
+<title>Page Title</title>
+<input value="left: 100px; padding-left: 100px; top: 400px; padding-top: 200px;"/>
+<button> Update </button>
+<iframe src="https://csreis.github.com/tests/input-types.html"></iframe>
+
+<script>
+document.querySelector('button').onclick = function() {
+document.querySelector('iframe').style = document.querySelector('input').value;
+};
+</script>
