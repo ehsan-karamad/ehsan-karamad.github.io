@@ -2,15 +2,22 @@
 <meta charset="utf-8">
 <!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
 <title>Sample page with single input field and some text </title>
+<style>
+* {
+    padding: 0;
+    margin: 0;
+}
+
 <body>
-  <div id="text-block">
-    This is the text block to test not the test block to text or the block test to text or the block text to test or the text test or test text to block.
-  </div>
   <input id="input" type="text" value="abc">
   <button onclick="onClick(2);"> Focus input in 2 sec </button>
   <button onclick="onClick();"> Focus input now. </button>
   <input id="style" value="font-size: 4px;"/>
   <button onclick="onSetStyle();"> Set Style </button>
+  <div id="text-block">
+    This is the text block to test not the test block to text or the block test to text or the block text to test or the text test or test text to block.
+  </div>
+ 
   <div id="log"></div>
   <script>
 document.querySelector('input').onfocus = function() {
