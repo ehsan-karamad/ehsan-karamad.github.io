@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
+<title>Page Title</title>
+<div style="width: 400px; height: 200px; border: solid 2px" contenteditable="true"></div>
+<button> Focus in 1 sec </button>
+<script>
+document.querySelector('button').onclick = function() {
+  window.setTimeout(() => {
+    document.querySelector('div').focus();
+  };
+};
+</script>
