@@ -10,6 +10,7 @@
 </style>
 <body>
   <input id="input" type="text" value="abc">
+  <button onclick="scrollToView();"> Scroll Input To View </button>
   <button onclick="onClick(2);"> Focus input in 2 sec </button>
   <button onclick="onClick();"> Focus input now. </button>
   <input id="style" value="font-size: 4px;"/>
@@ -37,11 +38,15 @@ function onClick(delay) {
     }, delay * 1000);
     return;
   }
-  document.querySelector('input').focus();
+  document.getElementById('input').focus();
 }
 
 function onSetStyle() {
   document.getElementById('input').style = document.getElementById('style').value;
-};
+}
+
+function scrollToView() {
+  document.getElementById('input').scrollIntoView();
+}
   </script>
 </body>
