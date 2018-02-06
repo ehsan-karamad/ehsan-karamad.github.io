@@ -8,11 +8,12 @@
 <script>
 document.querySelector('button').onclick = function() {
   window.setTimeout(() => {
-    document.querySelector('div').focus();
+    var d = document.querySelector('div');
+    d.focus();
     var s = window.getSelection();
     var r = document.createRange();
-    r.setStart(p, 0);
-    r.setEnd(p, 0);
+    r.setStart(d, 0);
+    r.setEnd(d, 0);
     s.removeAllRanges();
     s.addRange(r);
   }, 1000);
