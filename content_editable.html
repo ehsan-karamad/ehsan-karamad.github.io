@@ -12,8 +12,9 @@ document.querySelector('button').onclick = function() {
     d.focus();
     var s = window.getSelection();
     var r = document.createRange();
-    r.setStart(d, 0);
-    r.setEnd(d, 0);
+    var len = d.textContent.length;
+    r.setStart(d, len);
+    r.setEnd(d, len);
     s.removeAllRanges();
     s.addRange(r);
   }, 1000);
