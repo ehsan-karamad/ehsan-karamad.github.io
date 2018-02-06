@@ -10,4 +10,9 @@ document.querySelector('button').onclick = function() {
     document.querySelector('div').focus();
   };
 };
+
+document.querySelector('div').onclick = function() {
+  this.scrollTop = 0;
+  this.scrollLeft = 0;
+};
 </script>
