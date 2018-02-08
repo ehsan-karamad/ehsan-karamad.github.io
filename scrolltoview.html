@@ -3,14 +3,14 @@
 <!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
 <title>Page Title</title>
 <body>
-  <button> Scroll in 10 sec </button>
+  <button> Scroll in 2 sec </button>
   <script>
     function scrollIt() {
       this.style.marginTop = "1000px";
       this.style.marginLeft = "1000px";
       window.setTimeout(function() {
         this.scrollIntoView();
-      }.bind(this), 10000);
+      }.bind(this), 2000);
     }
   document.querySelector('button').onclick = scrollIt;
   </script>
