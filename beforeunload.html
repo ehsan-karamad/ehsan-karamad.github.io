@@ -1,0 +1,7 @@
+<h1> Simple Page with BeforeUnload </h1>
+<script>
+window.onbeforeunload = function(e) {
+	e.returnValue = 'Bye!';
+	return e;
+};
+</script>
