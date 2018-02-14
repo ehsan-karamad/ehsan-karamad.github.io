@@ -1,0 +1,31 @@
+<label> Source: </label> <input id="input-url" value="./beforeunload.html"/>
+<label> Type: </label> <input id="input-type" value="text/html"/>
+<label> Data: </label> <input id="input-data" value=""/>
+<button onclick="attachTag('embed');"> Attach New embed </button>
+<button onclick="attachTag('object')"> Attach New Object </button>
+<div id="container"></div>
+
+<script>
+function attachTag(tag) {
+	function updateEl(e) {
+		e.src = document.getElementById('input-url').value;
+		e.type = document.getElementById('input-type').value;
+		e.data = document.getElementById('input-data').value;
+	}
+
+	var el = document.createElement(tag);
+	updateEl(el);
+
+	var update = document.createElement('button');
+	update.textContent = 'Update';
+	update.onclick = function() {
+		updateEl(el);
+	};
+	var div = document.createElement('div');
+	div.appendChild(el);
+	div.appendChild(update);
+	document.getElementById('container').appendChild(div);
+}
+</script>
+
+
