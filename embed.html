@@ -15,12 +15,19 @@ function attachTag(tag) {
 
 	var el = document.createElement(tag);
 	updateEl(el);
-
+	let windowIndex = window.frames.length;
 	var update = document.createElement('button');
 	update.textContent = 'Update';
 	update.onclick = function() {
 		updateEl(el);
 	};
+
+	var updateWindowLocation = document.createElement('button');
+	updateWindowLocation.textContent = 'Update Window Location';
+	updateWindowLocation.onclick = function() {
+		window.frames[windowIndex].location.href = document.getElementById('input-url').value;
+	};
+	
 	var div = document.createElement('div');
 	div.appendChild(el);
 	div.appendChild(update);
