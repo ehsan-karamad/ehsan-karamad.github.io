@@ -3,15 +3,48 @@
 <!-- DO NOT SUBMIT: Fix Page Title. Missing tags? http://go/optional-html -->
 <title>Page Title</title>
 <body>
-  <button> Scroll in 2 sec </button>
-  <script>
-    function scrollIt() {
-      this.style.marginTop = "1000px";
-      this.style.marginLeft = "1000px";
-      window.setTimeout(function() {
-        this.scrollIntoView();
-      }.bind(this), 2000);
-    }
-  document.querySelector('button').onclick = scrollIt;
-  </script>
+  <style>
+  #container {
+    width: 500px;
+    height: 500px;
+    border: solid 2px;
+  }
+
+  .hasmargin {
+     margin: 10000px;
+  }
+
+</style>
+<div class="hasmargin" id="container">
+  <label> Delay for Scroll: </label> <input value="2000" id="delay"/> <br/>
+  <button onclick="instantScroll()"> Instant Scroll </button>
+  <button onclick="smoothScroll();"> Smooth Scroll </button>
+</div>
+<p class="hasmargin">Last Element</p>
+<script>
+  window.onload = function() {
+    instantScroll();
+  };
+
+  function resetState() {
+    document.scrollingElement.scrollTop = '0';
+    document.scrollingElement.scrollLeft = '0';
+  }
+
+  function instantScroll() {
+    resetState();
+    window.setTimeout(() => {
+      document.getElementById('container').scrollIntoView(
+        {'behavior': 'instant'});
+    }, document.getElementById('delay').value);
+  }
+
+  function smoothScroll() {
+        resetState();
+    window.setTimeout(() => {
+      document.getElementById('container').scrollIntoView(
+        {'behavior': 'smooth'});
+    }, document.getElementById('delay').value);
+  }
+</script>
 </body>
