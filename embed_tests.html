@@ -1,10 +1,9 @@
 <button onclick="createEmbed();"> Create Embed </button>
 <button onclick="attachEmbed();"> Attach Embed </button>
 <button onclick="deleteEmbed();"> Delete Embed </button>
-<button onclick="navigateEmbed(urlLocal);"> To Local HTML </button>
-<button onclick="navigateEmbed(urlRemote)"> To Remote HTML </button>
-<button onclick="navigateFrame(urlLocal)"> To Local (use window.frames) </button>
-<button onclick="navigateFrame(urlRemote)"> To Remote (use window.frames) </button>
+<button onclick="navigateEmbed(urlLocal);"> To HTML </button>
+<button onclick="navigateEmbed('https://wikipedia.org');"> To Wikipedia </button>
+<button onclick="navigateFrame(urlLocal)"> To HTML (use window.frames) </button>
 <button onclick="useFlash(urlFlash1);"> Flash 1 </button>
 <button onclick="useFlash(urlFlash2);"> Flash 2 </button>
 
@@ -14,7 +13,6 @@
 <script>
 var embed_ = null;
 let urlLocal = "./beforeunload.html";
-let urlRemote = "https://jsfiddle.net/ekaramad/w9rpzuuk/show";
 let urlFlash1 = "./res/flash1.swf";
 let urlFlash2 = "./res/flash2.swf";
 function createEmbed() {
