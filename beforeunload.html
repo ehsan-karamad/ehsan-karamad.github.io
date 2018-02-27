@@ -1,5 +1,6 @@
 <h1> Simple Page with BeforeUnload </h1>
 <button onclick="window.location.href= 'https://wikipedia.org';"> Wikipedia </button>
+<button onclick="window.parent.postMessage('hi', '*');"> Say Hi to Parent <button>
 <script>
 window.onbeforeunload = function(e) {
 	e.returnValue = 'Bye!';

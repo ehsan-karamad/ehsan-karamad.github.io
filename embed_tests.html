@@ -59,4 +59,8 @@ function onMessageFromFlash(msg) {
     embed_.onMessageFromWindow('hello');
   }, 1000);
 }
+
+window.onmessage = function(e) {
+  window.alert('Message Received:' + JSON.stringify(e.data));
+};
 </script>
