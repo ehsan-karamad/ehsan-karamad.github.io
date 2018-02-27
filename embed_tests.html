@@ -3,6 +3,9 @@
 <button onclick="deleteEmbed();"> Delete Embed </button>
 <button onclick="navigateEmbed(urlLocal);"> To Local HTML </button>
 <button onclick="navigateEmbed(urlRemote)"> To Remote HTML </button>
+<button onclick="navigateFrame(urlLocal)"> To Local (use window.frames) </button>
+<button onclick="navigateFrame(urlRemote)"> To Remote (use window.frames) </button>
+<button onclick="useFlash();"> Flash </button>
 <script>
 var embed_ = null;
 let localURL = "./beforeunload.html";
@@ -33,7 +36,12 @@ function navigateEmbed(url) {
   embed_.src = url;
 }
 
-function useFlash(url) {
+function navigateFrame(url) {
+  if (window.frames[0])
+    window.frames[0].location.href = url;
+}
+
+function useFlash() {
   if (!embed_)
     return;
   embed_.type = "application/x-shockwave-flash";
