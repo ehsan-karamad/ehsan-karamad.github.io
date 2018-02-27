@@ -1,0 +1,34 @@
+<button onclick="createEmbed();"> Create Embed </button>
+<button onclick="attachEmbed();"> Attach Embed </button>
+<button onclick="deleteEmbed();"> Delete Embed </button>
+<button onclick="navigateEmbed(urlLocal);"> To Local HTML </button>
+<button onclick="navigateEmbed(urlRemote)"> To Remote HTML </button>
+<script>
+var embed_ = null;
+let localURL = "./beforeunload.html";
+let remoteURL = "https://jsfiddle.net/ekaramad/w9rpzuuk/show";
+
+function createEmbed() {
+  embed_ = document.createElement('embed');
+}
+
+function attachEmbed() {
+  if (!embed_ || embed_.parentNode)
+    return;
+  document.getElementById('embed-container').appendChild(embed_);
+}
+
+function deleteEmbed() {
+  if (!embed_)
+    return;
+  if (embed_.parentNode)
+    embed_.parentNode.removeChild(embed_);
+  embed_ = null;
+}
+
+function navigateEmbed(url) {
+  if (!embed_)
+    return;
+  embed_
+}
+</script>
