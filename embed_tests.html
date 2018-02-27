@@ -29,6 +29,21 @@ function deleteEmbed() {
 function navigateEmbed(url) {
   if (!embed_)
     return;
-  embed_
+  embed_.type = "text/html";
+  embed_.src = url;
+}
+
+function useFlash(url) {
+  if (!embed_)
+    return;
+  embed_.type = "application/x-shockwave-flash";
+  embed_.src = "./res/flash.swf";
+}
+
+function onMessageFromFlash(msg) {
+  console.log(`${(new Date()).toString()}: Received '${msg}`);
+  window.setTimeout(() => {
+    embed_.onMessageFromWindow('hello');
+  }, 1000);
 }
 </script>
