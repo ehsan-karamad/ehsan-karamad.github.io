@@ -1,0 +1,105 @@
+<style>
+div {
+  overflow: scroll;
+  border: solid 2px;
+}
+
+#outer {
+  width: 800px;
+  height: 600px;
+  background: grey;
+  color: yellow;
+}
+
+#inner{
+  margin: 100px;
+  width: 580px;
+  height: 390px;
+  background: blue;
+  color: white;
+}
+
+.pp {
+  margin: 500px;
+}
+</style>
+<div id="outer">
+<span id="outer-text"></span>
+<div id="inner">
+  <span id="inner-text"></span>
+  <p class="pp"> A </p>
+  <p class="pp"> A </p>
+</div>
+  <p class="pp"> A </p>
+  <p class="pp"> A </p>
+</div>
+
+<button onclick="toggleOuter();"> Toggle Outer Div </button>
+<button onclick="toggleInner();"> Toggle Inner Div </button>
+<button onclick="toggleFrame();"> Toggle Iframe </button>
+<script>
+var outer = document.getElementById('outer');
+var inner = document.getElementById('inner');
+
+function toggleFrame() {
+  var iframe = document.querySelector('iframe');
+  if (iframe) {
+    document.body.removeChild(iframe);
+  } else {
+    iframe = document.createElement('iframe');
+    iframe.src = "./scroll_block.html?touchstart";
+    iframe.style.border = " sold 2px";
+    document.body.appendChild(iframe);
+  }
+}
+
+function countTo(n) {
+  s = 'Numbers:';
+  for (var i = 0; i < n; ++i) {
+    s = s + i;
+  }
+}
+href = window.location.href;
+pos = href.indexOf('?');
+window.n = 0;
+if (pos !== -1) {
+  window.n = 1 * href.substr(pos + 1);
+}
+
+function outerTouch(e) {
+  console.log(e);
+  countTo(n);
+  e.preventDefault();
+}
+
+function innerTouch(e) {
+  console.log(e);
+  countTo(n);
+  e.preventDefault();
+}
+
+function toggleInner() {
+  inner.removeEventListener('touchstart', innerTouch);
+  inner.removeEventListener('touchmove', innerTouch);
+  inner.passive = !inner.passive;
+  inner.addEventListener('touchstart', innerTouch, {passive: inner.passive});
+  inner.addEventListener('touchmove', innerTouch, {passive: inner.passive});
+  document.getElementById('inner-text').innerHTML = `Passive: ${inner.passive}`;
+}
+
+function toggleOuter() {
+  outer.removeEventListener('touchstart', outerTouch);
+  outer.removeEventListener('touchmove', outerTouch);
+  outer.passive = !outer.passive;
+  outer.addEventListener('touchstart', outerTouch, {passive: outer.passive});
+  outer.addEventListener('touchmove', outerTouch, {passive: outer.passive});
+  document.getElementById('outer-text').innerHTML = `Passive: ${outer.passive}`;
+}
+
+
+inner.passive = false;
+outer.passive = false;
+toggleInner();
+toggleOuter();
+
+</script>
