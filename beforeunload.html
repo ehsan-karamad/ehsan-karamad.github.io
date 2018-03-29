@@ -1,5 +1,6 @@
 <h1> With (before) unload handler. </h1>
-
+<p> Local Storage Logs </p>
+<div id="logs"></div>
 <script>
 window.addEventListener('beforeunload', function(e) {
   window.postMessage("beforeunload", "*");
@@ -12,6 +13,26 @@ window.addEventListener('load', function() {
 });
 
 window.addEventListener('unload', function(e) {
+  log("Unload called at <b> " + (new Date()).toString() + "</b><br/>");
   window.parent.postMessage({type: "unload"}, '*');
 });
+
+function log(msg) {
+  if (!window.localStorage)
+    return;
+  if (!window.localStorage.logs)
+    window.localStorage.logs = "<h2> Logs </h2>";
+  window.localStorage.logs += msg;
+  showLogs();
+}
+
+function showLogs() {
+  let div = document.getElementById("logs");
+  if (!window.localStorage)
+    div.innerHTML = "no local storage";
+  else
+    div.innerHTML = window.localStorage.logs;
+}
+
+window.addEventListener("load", showLogs);
 </script>
