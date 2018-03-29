@@ -1,21 +1,25 @@
+<style>
+embed { width: 500px; height: 100%; border: solid 1px red; }
+</style>
 <button onclick="createEmbed();"> Create Embed </button>
 <button onclick="attachEmbed();"> Attach Embed </button>
 <button onclick="deleteEmbed();"> Delete Embed </button>
 <button onclick="navigateEmbed(urlLocal);"> To HTML </button>
 <button onclick="navigateEmbed('https://wikipedia.org');"> To Wikipedia </button>
 <button onclick="navigateFrame(urlLocal)"> To HTML (use window.frames) </button>
-<button onclick="useFlash(urlFlash1);"> Flash 1 </button>
-<button onclick="useFlash(urlFlash2);"> Flash 2 </button>
+<button onclick="useFlash(urlFlash1);"> Use Flash </button>
 
-<div style="width: 100%; height: 50%; border: solid red;" id="embed-container"></div>
-<div style="width: 100%; height: 50%; border: solid red;" id="updates"></div>
-
+<div style="width: 100%; " id="embed-container"></div>
+<div style="width: 100%; " id="log"></div>
+<button onclick="clearLogs();"> Clear Logs </button>
 <script>
 var embed_ = null;
 let urlLocal = "./beforeunload.html";
 let urlFlash1 = "./res/flash1.swf";
-let urlFlash2 = "./res/flash2.swf";
+
 function createEmbed() {
+  if (embed_)
+    deleteEmbed();
   embed_ = document.createElement('embed');
   embed_.style = "width: 500px; height: 400px; border: solid purple 2px;";
 }
@@ -44,6 +48,8 @@ function navigateEmbed(url) {
 function navigateFrame(url) {
   if (window.frames[0])
     window.frames[0].location.href = url;
+  else if (window.childWindow)
+    window.childWindow.location.href = url;
 }
 
 function useFlash(url) {
@@ -53,14 +59,39 @@ function useFlash(url) {
   embed_.src = url;
 }
 
-function onMessageFromFlash(msg) {
-  console.log(`${(new Date()).toString()}: Received '${msg}`);
-  window.setTimeout(() => {
-    embed_.onMessageFromWindow('hello');
-  }, 1000);
+function initStorage() {
+  if (!window.localStorage)
+    return false;
+  if (!window.localStorage.logs)
+    window.localStorage.logs = "<h2> LOGS </h2>";
+  return true;
+}
+
+function clearLogs() {
+  if (initStorage()) {
+    window.localStorage.logs = "<h2> LOGS </h2>";
+    updateLogs();
+  }
+}
+
+function updateLogs() {
+  if (!initStorage())
+    return;
+  document.getElementById("log").innerHTML = window.localStorage.logs;
 }
 
 window.onmessage = function(e) {
-  window.alert('Message Received:' + JSON.stringify(e.data));
+  if (e.data.type && e.data.type === "unload") {
+    window.alert("Unload handler called.");
+    if (!initStorage())
+      return;
+    window.localStorage.logs += "unload called on <b>" + (new Date()).toString() + "</b><br/>";
+    updateLogs();
+  }
+  if (e.data.type && e.data.type === "load")
+    window.childWindow = e.source;
 };
+
+window.addEventListener("load", updateLogs);
+
 </script>
