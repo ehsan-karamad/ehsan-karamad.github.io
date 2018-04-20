@@ -8,6 +8,8 @@ embed { width: 500px; height: 100%; border: solid 1px red; }
 <button onclick="navigateEmbed('https://wikipedia.org');"> To Wikipedia </button>
 <button onclick="navigateFrame(urlLocal)"> To HTML (use window.frames) </button>
 <button onclick="useFlash(urlFlash1);"> Use Flash </button>
+<button onclick="changeMime();"> Change MimeType </button>
+<input id="mime-type" value="text/html"/>
 
 <div style="width: 100%; " id="embed-container"></div>
 <div style="width: 100%; " id="log"></div>
@@ -57,6 +59,12 @@ function useFlash(url) {
     return;
   embed_.type = "application/x-shockwave-flash";
   embed_.src = url;
+}
+
+function changeMime() {
+  if (!embed_)
+    return;
+  embed_.type = document.getElementById("mime-type").value;
 }
 
 function initStorage() {
