@@ -9,7 +9,14 @@
 	}
 </style>
 <body>
-<iframe src="./scroll_into_view_abuse.html">
+<iframe id="bad" src="">
 </iframe>
 <iframe src="https://github.com/WICG/feature-policy/issues/139">
 </iframe>
+
+<script>
+	var bad = document.querySelector('#bad');
+	if (window.location.href.indexOf('safe'))
+		bad.allow = "vertical-scroll 'none'";
+	bad.src = "./scroll_into_view_abuse.html";
+</script>
