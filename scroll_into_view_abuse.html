@@ -1,0 +1,16 @@
+<style>
+* {
+	color: red;
+	background-color: black;
+}
+</style>
+
+<h1>
+This page repeatedly scrolls into view.
+</h1>
+
+<script>
+window.setInterval(() => {
+	document.querySelector('h1').scrollIntoView();
+});
+</script>
