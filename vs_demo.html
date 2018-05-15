@@ -1,0 +1,36 @@
+<title> Naive Page Embedding a Bad &lt;iframe&gt; </title>
+<style>
+body {
+  width: 100%;
+  height: 100%;
+}
+iframe {
+width: 95%;
+}
+
+#ad {
+  border: solid 5px red;
+  height: 40%;
+}
+
+#content {
+  border: solid 5px green;
+  height: 150%;
+}
+
+</style>
+<body>
+  <button onclick="togglePolicy()"> Toggle Policy </button>
+<iframe id="ad" src="./ad_vs_demo.html"></iframe>
+<p> Useful content goes below </p>
+<iframe id="content" src="https://en.wikipedia.org/wiki/Ad_blocking">
+</iframe>
+</div>
+<script>
+  function togglePolicy() {
+    let frame = document.getElementById('ad');
+    frame.allow = "vertical-scroll 'none';"
+    frame.contentWindow.location.href = frame.src;
+  };
+</script>
+</body>

@@ -1,0 +1,92 @@
+<title> Bad Ad Page which Messes with scrolling </title>
+<style>
+  body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    touch-action: pax-x;
+  }
+
+  #carousel {
+    touch-action: pan-x;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    border: solid pink 2px;
+    overflow:scroll;
+  }
+
+  .carousel-entry {
+    height: 100%;
+    width: 50%;
+    margin-right: 20px;
+    border: solid yellow 2px;
+    float: left;
+  }
+
+</style>
+<body>
+ <div id="carousel">
+ </div>
+ <script>
+  carousel = document.querySelector('#carousel');
+
+  window.setInterval(() => {
+    carousel.scrollIntoView({behavior: 'smooth'});
+  }, 1000);
+
+  previousX = null;
+  window.addEventListener('touchstart', (e) => {
+    previousX = e.touches[0].screenX;
+    seen_touch_move = false;
+  })
+
+  window.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    if (seen_touch_move)
+      return;
+
+    let x = e.touches[0].screenX;
+    if (x > previousX) {
+      scrollCarousel('right');
+    } else if (x < previousX) {
+      scrollCarousel('left');
+    }
+    seen_touch_move = true;
+  });
+
+  window.addEventListener('touchend', (e) => {
+    seen_touch_move = false;
+  });
+
+  frameIndex = 0;
+  iframes = [];
+  urls = [
+    'https://ieeexplore.ieee.org/document/7248336/',
+    'http://www.uxbooth.com/articles/about-pages-good-bad-and-missing/',
+    'https://www.google.ca/insidesearch/howsearchworks/fighting-spam.html',
+    'https://www.getelastic.com/tips-for-writing-results-not-found-messages',
+  ];
+
+  function scrollCarousel(dir) {
+    delta = (dir === 'left') ? -1 : 1;
+    frameIndex = Math.max(0, Math.min(frameIndex + delta, urls.length - 1));
+    console.log("Next frame index:" +  frameIndex);
+    iframes[frameIndex].scrollIntoView();
+  }
+
+  urls.forEach((url) => {
+    let frame = document.createElement('iframe');
+    frame.src = url;
+    carousel.appendChild(frame);
+    frame.setAttribute('class', 'carousel-entry');
+    iframes.push(frame);
+  });
+
+  window.addEventListener('beforeunload', (e) => {
+    e.returnValue = "something";
+    return "something";
+  });
+
+</script>
+</body>
