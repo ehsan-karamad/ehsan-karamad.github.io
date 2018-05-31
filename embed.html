@@ -1,6 +1,7 @@
 <label> Source: </label> <input id="input-url" value="./beforeunload.html"/>
 <label> Type: </label> <input id="input-type" value="text/html"/>
 <label> Data: </label> <input id="input-data" value=""/>
+<label> Style:</label> <input id="input-style" value="align: left;"/>
 <button onclick="attachTag('embed');"> Attach New embed </button>
 <button onclick="attachTag('object')"> Attach New Object </button>
 <div id="container"></div>
@@ -13,13 +14,22 @@ function attachTag(tag) {
 		e.data = document.getElementById('input-data').value;
 	}
 
+	function setStyle(e) {
+		e.style = document.getElementById("input-style").value;
+	}
+
 	var el = document.createElement(tag);
 	updateEl(el);
 	let windowIndex = window.frames.length;
 	var update = document.createElement('button');
-	update.textContent = 'Update';
+	update.textContent = 'Update type/src/data';
 	update.onclick = function() {
 		updateEl(el);
+	};
+	var updateStyle = document.createElement('button');
+	updateStyle.textContent = "Update Style";
+	updateStyle.onclick = function() {
+		setStyle(el);
 	};
 
 	var updateWindowLocation = document.createElement('button');
@@ -27,7 +37,7 @@ function attachTag(tag) {
 	updateWindowLocation.onclick = function() {
 		window.frames[windowIndex].location.href = document.getElementById('input-url').value;
 	};
-	
+
 	var div = document.createElement('div');
 	div.appendChild(el);
 	div.appendChild(update);
