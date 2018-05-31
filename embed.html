@@ -8,7 +8,7 @@
 
 <script>
 function attachTag(tag) {
-	function updateEl(e) {
+	function setAttributes(e) {
 		e.src = document.getElementById('input-url').value;
 		e.type = document.getElementById('input-type').value;
 		e.data = document.getElementById('input-data').value;
@@ -19,12 +19,12 @@ function attachTag(tag) {
 	}
 
 	var el = document.createElement(tag);
-	updateEl(el);
+	setAttributes(el);
 	let windowIndex = window.frames.length;
-	var update = document.createElement('button');
-	update.textContent = 'Update type/src/data';
-	update.onclick = function() {
-		updateEl(el);
+	var updateAttributes = document.createElement('button');
+	updateAttributes.textContent = 'Update type/src/data';
+	updateAttributes.onclick = function() {
+		setAttributes(el);
 	};
 	var updateStyle = document.createElement('button');
 	updateStyle.textContent = "Update Style";
@@ -40,7 +40,8 @@ function attachTag(tag) {
 
 	var div = document.createElement('div');
 	div.appendChild(el);
-	div.appendChild(update);
+	div.appendChild(updateAttributes);
+	div.appendChild(updateStyle);
 	document.getElementById('container').appendChild(div);
 }
 </script>
