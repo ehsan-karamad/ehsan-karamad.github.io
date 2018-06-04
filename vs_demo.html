@@ -20,17 +20,23 @@ width: 95%;
 
 </style>
 <body>
-  <button onclick="togglePolicy()"> Toggle Policy </button>
+  <button onclick="togglePolicy()"> <span id="text-disable-enable">Disable</span> <span style="font-family: courier; backgorund-color: GhostWhite;">vertical-scroll</span></button>
 <iframe id="ad" src="./ad_vs_demo.html"></iframe>
 <p> Useful content goes below </p>
 <iframe id="content" src="https://en.wikipedia.org/wiki/Ad_blocking">
 </iframe>
 </div>
 <script>
+  let feature_enabled = true;
+
   function togglePolicy() {
+    feature_enabled = !feature_enabled;
+    document.getElementById("text-disable-enable").innerHTML =
+     feature_enabled ? "Disable" : "Enable";
+
     let frame = document.getElementById('ad');
-    frame.allow = "vertical-scroll 'none';"
-    frame.contentWindow.location.href = frame.src;
+    frame.allow = `vertical-scroll '${feature_enabled ? "all" : "none"}'`;
+    frame.src = "./ad_vs_demo.html";
   };
 </script>
 </body>
