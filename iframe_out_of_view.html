@@ -9,7 +9,7 @@
     height: 100%;
   }
   iframe {
-    margin: 1000px;
+    margin: 200%;
   }
 </style>
 <iframe>
@@ -18,8 +18,10 @@
   let url = window.location.href.substr(window.location.href.indexOf("?") + 1);
   document.querySelector("iframe").src = url;
   window.addEventListener("keydown", (e) => {
-	  if (e.keyCode === 83)
+	  if (e.keyCode === 50)
 		document.querySelector("iframe").scrollIntoView();
+	  if (e.keyCode === 87)
+		window.scrollTo(0, 0);
   });
 </script>
 </body>
