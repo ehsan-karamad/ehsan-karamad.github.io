@@ -1,0 +1,17 @@
+<button>
+Scroll Target
+</button>
+
+<script>
+let button = document.querySelector("button");
+window.addEventListener("keydown", (e) => {
+if (e.keyCode === 51)
+  button.scrollIntoView({behavior: "smooth"});
+if (e.keyCode == 52)
+  button.scrollIntoView({behavior: "instant"});
+if (e.keyCode === 69)
+	window.scrollTo(0, 0);
+});
+window.addEventListener("load", () => window.focus());
+
+</script>
