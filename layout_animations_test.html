@@ -1,0 +1,54 @@
+<title>A lot of layout-animations!</title>
+<style>
+* { position: relative; }
+div, input, button {
+  width: 100px;
+  height: 100px;
+  border: solid 1px;
+}
+</style>
+<body>
+<script>
+const element_types = ["div", "input", "button"];
+const styles = ["width", "height", "left", "right", "top", "bottom"];
+const instances = window.location.search ? window.location.search.substr(1) : 1000;
+
+function rand_int(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+// Random value in [100, 900];
+function random_length() {
+  return rand_int(100, 1000);
+}
+
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function random_animation() {
+  let e = document.createElement(element_types[rand_int(0, 3)]);
+  e.style.color = getRandomColor();
+  e.style.backgroundColor = getRandomColor();
+
+  let style = styles[rand_int(0, 6)];
+  let length_1 = random_length(), length_2 = random_length();
+  let from = {}, to = {};
+  from[style] = `${Math.min(length_1, length_2)}px`;
+  to[style] = `${Math.max(length_1, length_2)}px`;
+  document.body.appendChild(e);
+  e.animate([from, to], { duration: 2, iterations: "Infinity"});
+}
+
+for (var i = 0; i < instances; ++i) {
+  random_animation();
+}
+
+</script>
+</body>
