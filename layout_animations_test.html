@@ -98,7 +98,7 @@ function random_text() {
 
   let p = document.createElement("p");
   p.innerHTML = ptext;
-  let position_style = ["absolute", "relative", "fixed", "static"][rand_int(0, 4)];
+  let position_style = ["absolute", "relative", "static"][rand_int(0, 4)];
   p.style.position = position_style;
   if (position_style !== "static") {
     p.style.left = random_length();
