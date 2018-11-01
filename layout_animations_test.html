@@ -13,6 +13,7 @@ const element_types = ["div", "input", "button"];
 const styles = ["width", "height", "left", "right", "top", "bottom"];
 var instances = 1000;
 var seed = -1;
+var text_node_count = 0;
 
 let str = window.location.search;
 if (str.indexOf("?q=") !== -1) {
@@ -20,6 +21,8 @@ if (str.indexOf("?q=") !== -1) {
   instances = 1 * args[0];
   if (args[1] !== undefined)
     seed = 1 * args[1];
+  if (args[2] !== undefined)
+    text_node_count = 1 * args[2];
 }
 
 function rng(seed) {
@@ -68,6 +71,45 @@ function random_animation() {
   e.animate([from, to], { duration: rand_int(100,3000), iterations: "Infinity"});
 }
 
+function random_text() {
+  const alphabet = '01234567890abcdefghijklmnopqrstuvwxyz';
+  const len = alphabet.length;
+  function next_char() {
+    return alphabet[rand_int(0, len)];
+  }
+  function is_eow() {
+    return rand.random() < 0.2; // words of length 5 on avg.
+  }
+  function is_eop() {
+    return rand.random() < 0.01 // paragraph with 100 words on avg.
+  }
+  function random_word() {
+    let w = "" + next_char();
+    while(!is_eow()) {
+      w += next_char();
+    }
+    return w;
+  }
+
+  let ptext = random_word();
+  while(!is_eop()) {
+    ptext += " " + random_word();
+  }
+
+  let p = document.createElement("p");
+  p.innerHTML = ptext;
+  let position_style = ["absolute", "relative", "fixed", "static"][rand_int(0, 4)];
+  p.style.position = position_style;
+  if (position_style !== "static") {
+    p.style.left = random_length();
+    p.style.top = random_length();
+  }
+  document.body.appendChild(p);
+}
+
+for (var i = 0; i < instances; ++i) {
+  random_text();
+}
 for (var i = 0; i < instances; ++i) {
   random_animation();
 }
