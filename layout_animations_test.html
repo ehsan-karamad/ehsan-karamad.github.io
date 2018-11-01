@@ -11,10 +11,32 @@ div, input, button {
 <script>
 const element_types = ["div", "input", "button"];
 const styles = ["width", "height", "left", "right", "top", "bottom"];
-const instances = window.location.search ? window.location.search.substr(1) : 1000;
+var instances = 1000;
+var seed = -1;
+
+let str = window.location.search;
+if (str.indexOf("?q=") !== -1) {
+  let args = str.substr(3).split(",");
+  instances = 1 * args[0];
+  if (args[1] !== undefined)
+    seed = 1 * args[1];
+}
+
+function rng(seed) {
+  var internal_state = seed;
+  function next_double() {
+    internal_state = (internal_state * 13 + 1601613) % 1000000009;
+    return internal_state / 1000000009.0;
+  }
+
+  this.random =
+    seed !== undefined ? next_double : Math.random;
+}
+
+let rand = new rng(seed);
 
 function rand_int(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
+  return Math.floor(rand.random() * (max - min) + min);
 }
 
 // Random value in [100, 900];
@@ -27,7 +49,7 @@ function getRandomColor() {
   var letters = '0123456789ABCDEF';
   var color = '#';
   for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
+    color += letters[Math.floor(rand.random() * 16)];
   }
   return color;
 }
@@ -43,7 +65,7 @@ function random_animation() {
   from[style] = `${Math.min(length_1, length_2)}px`;
   to[style] = `${Math.max(length_1, length_2)}px`;
   document.body.appendChild(e);
-  e.animate([from, to], { duration: 2, iterations: "Infinity"});
+  e.animate([from, to], { duration: rand_int(100,3000), iterations: "Infinity"});
 }
 
 for (var i = 0; i < instances; ++i) {
