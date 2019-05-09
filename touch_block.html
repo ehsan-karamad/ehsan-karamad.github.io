@@ -1,0 +1,22 @@
+<!doctype html>
+<body>
+<script>
+var container = document.body;//document.getElementById("container");
+var div_count = 10;
+if (window.location.search) {
+  div_count = 1 * (window.location.search.substr(1));
+}
+
+function content_div() {
+  let div = document.createElement("div");
+  div.style.height = Math.floor(screen.height / 20) + "px";
+  div.style.width = "100%";
+  div.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+  container.appendChild(div);
+}
+
+for (var i = 0; i < div_count; ++i)
+  content_div();
+container.addEventListener("touchstart", (e) => e.preventDefault());
+</script>
+</body>
